@@ -1,0 +1,64 @@
+<a mat-button color="primary" routerLink="/users">
+  <mat-icon aria-hidden="false">arrow_back</mat-icon>
+  Volver
+</a>
+<h1 class="mat-title">New user</h1>
+<form class="form" [formGroup]="form" (submit)="save($event)">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput #name formControlName="name">
+    <mat-error *ngIf="form.get('name')!.invalid && form.get('name')!.errors && form.get('name')!.touched || form.get('name')!.dirty">
+      <span *ngIf="form.get('name')!.hasError('required')">
+        This field is required.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Lastname</mat-label>
+    <input matInput #lastname formControlName="lastname">
+    <mat-error *ngIf="form.get('lastname')!.invalid && form.get('lastname')!.errors && form.get('lastname')!.touched || form.get('lastname')!.dirty">
+      <span *ngIf="form.get('lastname')!.hasError('required')">
+        This field is required.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Age</mat-label>
+    <input matInput #age formControlName="age" type="number">
+    <mat-error *ngIf="form.get('age')!.invalid && form.get('age')!.errors && form.get('age')!.touched || form.get('age')!.dirty">
+      <span *ngIf="form.get('age')!.hasError('required')">
+        This field is required.
+      </span>
+      <span *ngIf="form.get('age')!.hasError('min')">
+        The minimum value is 1.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput #email formControlName="email">
+    <mat-error *ngIf="form.get('email')!.invalid && form.get('email')!.errors && form.get('email')!.touched || form.get('email')!.dirty">
+      <span *ngIf="form.get('email')!.hasError('required')">
+        This field is required.
+      </span>
+      <span *ngIf="form.get('email')!.hasError('email')">
+        This isn't a valid email.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput #description formControlName="description"></textarea>
+    <mat-error *ngIf="form.get('description')!.invalid && form.get('description')!.errors && form.get('description')!.touched || form.get('description')!.dirty">
+      <span *ngIf="form.get('description')!.hasError('required')">
+        This field is required.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid">Add</button>
+</form>

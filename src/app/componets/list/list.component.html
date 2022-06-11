@@ -1,0 +1,26 @@
+<div class="message">
+  <p *ngIf="(users$ | async)?.length == 0"> No hay usuarios registrados.</p>
+  <a mat-raised-button color="primary" routerLink="/users/add-user"><mat-icon>add</mat-icon> &nbsp; Add User</a>
+</div>
+<div class="list">
+  <mat-card class="user" *ngFor="let user of users$ | async">
+    <mat-card-header>
+      <div mat-card-avatar class="avatar"></div>
+      <mat-card-title>{{user.name}} {{user.lastname}}</mat-card-title>
+      <mat-card-subtitle>{{user.age}} años</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{user.email}}
+      </p>
+      <p>
+        {{user.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button color="accent" [routerLink]="['/users/edit-user', user.id]"><mat-icon>edit</mat-icon> &nbsp; Edit</a>
+      <button mat-button color="warn" (click)="openDialog(user.id!)"><mat-icon>delete</mat-icon> &nbsp; Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
